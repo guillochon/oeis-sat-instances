@@ -1,0 +1,4 @@
+*.cnf
+*.model
+__pycache__/
+*.body
