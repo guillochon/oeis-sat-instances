@@ -62,6 +62,20 @@ The original proofs for n = 11–17 did not solve one monolithic CNF. They enume
 to symmetry and solved one instance per prefix, with lots of CPU. So a solver that handles the monolithic
 n=16/17 UNSAT instances quickly is already doing something remarkable.
 
+### Baseline: off-the-shelf CaDiCaL
+
+CaDiCaL 1.5.3 (via PySAT), default settings, 1 thread on an Intel i5-12600K, run at below-normal priority on a
+shared machine:
+
+| instance | result | time |
+|---|---|---|
+| n=11, d=7 | UNSAT (correct) | 1,264 s |
+| n=12, d=8 | SAT (correct; the model is a 43-comparator network that passes `decode_verify.py`) | 111 s |
+| n=12, d=7 | UNSAT (correct) | 2,142 s |
+
+Larger rungs were not attempted. A time of about half an hour at n = 12 suggests that the n = 16–18 instances are
+far out of reach for a standard solver run on the monolithic CNF.
+
 ## Encoding (sound and complete; details in the header of `gen_depth_cnf.py`)
 
 * **First layer fixed** to (0,1),(2,3),…,(16,17). Parberry (1991) showed this loses no generality for optimal depth.
